@@ -8,7 +8,7 @@ import (
 
 const (
 	startedMessage = "Building %s, commit %s, author %s"
-	successMessage = "<b>Success</b>: %s<br />Commit: %s<br />Author: %s<br /><a href='%s/%s/commit/%s'>Build Link/a>"
+	successMessage = "<b>Success</b>: %s<br />Commit: %s<br />Author: %s<br /><a href='%s/%s/commit/%s'>Build Link</a>"
 	failureMessage = "<b>Failed</b>: %s<br />Commit: %s<br />Author: %s<br /><a href='%s/%s/commit/%s'>Build Link</a>"
 )
 
