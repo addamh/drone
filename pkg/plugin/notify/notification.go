@@ -16,8 +16,6 @@ type Context struct {
 	// Repository being built.
 	Repo *model.Repo
 
-	Build *model.Build
-
 	// Commit being built
 	Commit *model.Commit
 }

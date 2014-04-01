@@ -8,8 +8,8 @@ import (
 
 const (
 	startedMessage = "Building %s, commit %s, author %s"
-	successMessage = "<b>Success</b><br />%s<br />Commit: %s<br />Author:%s<br />Duration %s<br /><a href='%s/%s/commit/%s'>Build: %s</a>"
-	failureMessage = "<b>Failed</b><br />%s<br />Commit: %s<br />Author:%s<br />Duration %s<br /><a href='%s/%s/commit/%s'>Build: %s</a>"
+	successMessage = "<b>Success</b>: %s<br />Commit: %s<br />Author:%s<br /><a href='%s/%s/commit/%s'>Build Link/a>"
+	failureMessage = "<b>Failed</b>: %s<br />Commit: %s<br />Author:%s<br /><a href='%s/%s/commit/%s'>Build Link</a>"
 )
 
 type Hipchat struct {
@@ -39,12 +39,12 @@ func (h *Hipchat) sendStarted(context *Context) error {
 }
 
 func (h *Hipchat) sendFailure(context *Context) error {
-	msg := fmt.Sprintf(failureMessage, context.Repo.Name, context.Commit.HashShort(), context.Commit.Author, context.Host, context.Repo.Slug, context.Commit.Hash, context.Build.Duration, context.Build.ID)
+	msg := fmt.Sprintf(failureMessage, context.Repo.Name, context.Commit.HashShort(), context.Commit.Author, context.Host, context.Repo.Slug, context.Commit.Hash)
 	return h.send(hipchat.ColorRed, hipchat.FormatHTML, msg)
 }
 
 func (h *Hipchat) sendSuccess(context *Context) error {
-	msg := fmt.Sprintf(successMessage, context.Repo.Name, context.Commit.HashShort(), context.Commit.Author, context.Host, context.Repo.Slug, context.Commit.Hash, context.Build.Duration, context.Build.ID)
+	msg := fmt.Sprintf(successMessage, context.Repo.Name, context.Commit.HashShort(), context.Commit.Author, context.Host, context.Repo.Slug, context.Commit.Hash)
 	return h.send(hipchat.ColorGreen, hipchat.FormatHTML, msg)
 }
 
